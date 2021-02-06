@@ -1,29 +1,9 @@
-# Reentrega practica Fundamentos React
+# Practica React Avanzado (Redux)
 
-### Correcciones realizadas
-
-Sobre la practica previa [KC09-NodePopReact](https://github.com/EduDev4/KC09-NodePopReact) :  
-
-- Agregadas todas las dependencias a package.json
-- En el listado de anuncios, manejo del estado cuando no hay anuncios para mostrar un aviso.
-- Añadido aviso al borrar un anuncio.
-- Redirección a 404 si no existe el anuncio.
-- En la creación del anuncio, se añaden elementos para incluir imagen y tags.
-- Creados algunos prop-types
-
-### Posibles mejoras detectadas:
-
-- Incluir campo Tags en el filtro
-- Avisar al hacer logout
-- Mejorar vista de anuncio
-
----
----
-
-## Backend  
+## Backend
 
 https://github.com/davidjj76/nodepop_web_avanzado
-** Requiere una carpeta Uploads para alojar las imagenes.
+\*\* Requiere una carpeta Uploads para alojar las imagenes.
 
 ## Clone project
 
@@ -36,6 +16,7 @@ Run command to install dependencies
 - Set variables in a .env file following .env.example structure.
 
 ---
+
 ---
 
 # Getting Started with Create React App
@@ -45,6 +26,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm start`
+
+Install all depencencies.
 
 ### `npm start`
 
