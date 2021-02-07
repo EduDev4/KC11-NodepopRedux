@@ -6,8 +6,8 @@ import placeholder from '../../../assets/photo-default.png';
 import './Adverts.css';
 import Tags from '../Tags';
 
-const Advert = ({ name, price, photo, sale, tags, _id, history }) => (
-  <article key={_id} onClick={() => history.push(`/advert/${_id}`)}>
+const Advert = ({ name, price, photo, sale, tags, _id }) => (
+  <article key={_id}>
     <div className="right">
       <div className="advert-header">
         <span className="advert-name">{sale ? 'On Sale' : 'For Buying'}</span>

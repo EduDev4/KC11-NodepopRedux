@@ -19,29 +19,31 @@ const removeAuthorizationHeader = () => {
 client.login = credentials =>
   client.post(`${apiVersion}/auth/login`, credentials).then(auth => {
     setAuthorizationHeader(auth.token);
-    auth.email = credentials.email;
     return auth;
   });
 
-// Logout method
 client.logout = () =>
   new Promise(resolve => {
-    // Remove Authorization header
     removeAuthorizationHeader();
     resolve();
   });
 
 client.interceptors.response.use(
-  ({ data: { ok, ...result } }) => {
+  ({ data: { ok, ...data } }) => {
     if (!ok) {
-      return Promise.reject(result.error);
+      return Promise.reject(data.error);
     }
-    return Promise.resolve(result);
+    if (data.hasOwnProperty('result')) {
+      return Promise.resolve(data.result);
+    }
+    return Promise.resolve(data);
   },
   error => {
-    console.log(error);
-    if (!error.response) {
+    if (!error.response && !error.message) {
       return Promise.reject(error);
+    }
+    if (error.message) {
+      return Promise.reject(error.message);
     }
     return Promise.reject(error.response.data.error);
   },

@@ -4,10 +4,10 @@ import T from 'prop-types';
 import Header from './Header';
 import './Layout.css';
 
-function Layout({ children, title, ...props }) {
+function Layout({ children, title }) {
   return (
     <div>
-      <Header {...props} />
+      <Header />
       <main>
         <h2>{title}</h2>
         <section>{children}</section>

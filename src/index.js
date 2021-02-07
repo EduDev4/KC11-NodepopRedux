@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
-import App from './components/App';
 import storage from './utils/storage';
+import { configureStore } from './store';
+
 import { configureClient } from './api/client';
+
+import App, { Root } from './components/App';
 
 import './index.css';
 
-const auth = storage.get('auth') || { email: null, token: null, ok: false };
+const { token } = storage.get('auth') || { token: null };
+const filters = storage.get('filters') || undefined;
 
-configureClient(auth.token);
+configureClient(token);
+
+const history = createBrowserHistory();
+const store = configureStore({ auth: !!token, filters }, { history, storage });
 
 class ErrorBoundary extends React.Component {
   state = {
@@ -34,9 +41,9 @@ class ErrorBoundary extends React.Component {
 
 ReactDOM.render(
   <ErrorBoundary>
-    <BrowserRouter>
-      <App initiallyLooggedUserId={auth.email} />
-    </BrowserRouter>
+    <Root history={history} store={store}>
+      <App />
+    </Root>
   </ErrorBoundary>,
   document.getElementById('root'),
 );

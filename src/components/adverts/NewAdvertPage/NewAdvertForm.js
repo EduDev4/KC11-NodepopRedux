@@ -4,8 +4,8 @@ import './NewAdvertPage.css';
 
 import { InputNumber, Switch, Button, Row, Col, Input } from 'antd';
 import 'antd/dist/antd.css';
-import TagSelect from './TagSelect';
-import { InputImage } from '../../shared';
+import TagSelect from '../TagsSelect';
+import { InputImage, FormField } from '../../shared';
 
 class NewAdvertForm extends React.Component {
   state = {
@@ -51,43 +51,46 @@ class NewAdvertForm extends React.Component {
             <InputImage type="file" onChange={this.handlePhotoChange} />
           </Col>
           <Col span={20}>
-            Name:{' '}
-            <Input
-              type="text"
-              name="name"
-              value={name ? name : ''}
-              onChange={this.handleNameChange}
-              placeholder="i.e.: Bici"
-            />
+            <FormField label="Name">
+              <Input
+                type="text"
+                name="name"
+                value={name ? name : ''}
+                onChange={this.handleNameChange}
+                placeholder="i.e.: Bici"
+              />
+            </FormField>
           </Col>
         </Row>
         <Row className="formRow">
           <Col span={40}>
-            Price:{' '}
-            <InputNumber
-              min="0"
-              max="1000000"
-              onChange={this.handlePriceChange}
-              value={price}
-            />
+            <FormField label="Price">
+              <InputNumber
+                min="0"
+                max="1000000"
+                onChange={this.handlePriceChange}
+                value={price}
+              />
+            </FormField>
           </Col>
         </Row>
         <Row className="formRow">
           <Col span={24}>
-            <TagSelect onChange={this.handleTagsChange} value={tags} />
+            <FormField label="Tags">
+              <TagSelect onChange={this.handleTagsChange} value={tags} />
+            </FormField>
           </Col>
         </Row>
         <Row className="formRow">
           <Col span={20}>
-            <b>On Sale: </b>
-          </Col>
-          <Col span={20}>
-            <Switch
-              name="sale"
-              size="small"
-              checked={sale}
-              onChange={this.handleSaleChange}
-            />
+            <FormField label="On sale">
+              <Switch
+                name="sale"
+                size="small"
+                checked={sale}
+                onChange={this.handleSaleChange}
+              />
+            </FormField>
           </Col>
         </Row>
         <Row>
